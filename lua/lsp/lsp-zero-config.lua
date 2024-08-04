@@ -44,7 +44,6 @@ local kind_icons = {
 	Misc = " ",
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
-
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -70,8 +69,8 @@ cmp.setup {
         cmp.select_next_item()
       elseif luasnip.expandable() then
         luasnip.expand()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
+      --elseif luasnip.expand_or_jumpable() then
+        --luasnip.expand_or_jump()
       elseif check_backspace() then
         fallback()
       else
@@ -129,3 +128,14 @@ cmp.setup {
     native_menu = false,
   },
 }
+
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+
+
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
+
+
