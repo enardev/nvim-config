@@ -10,6 +10,7 @@ require('plugins.nvim-tree-config')
 require('plugins.lualine-config')
 require('plugins.treesitter-config')
 require('plugins.toggle-terminal')
+require('plugins.gitsigns')
 
 -- lsp settings
 require('lsp.mason-config')

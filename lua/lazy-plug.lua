@@ -73,6 +73,17 @@ require("lazy").setup({
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
+	},
+	{
+		"lewis6991/gitsigns.nvim"
+	},
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {} -- this is equalent to setup({}) function
+	},
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim"
 	}
 })
 
