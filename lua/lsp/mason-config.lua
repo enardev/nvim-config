@@ -40,7 +40,7 @@ require("mason-tool-installer").setup({
 		-- Go
 		"gofumpt",
 		"goimports",
-		"goimports-reviser",
+		--"goimports-reviser",
 		"golangci-lint",
 		"golangci-lint-langserver",
 		"golines",

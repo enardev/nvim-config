@@ -1,11 +1,15 @@
 local lsp_zero = require('lsp-zero')
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+--local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
+lsp_capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 require('lspconfig').tsserver.setup({
   capabilities = lsp_capabilities,
   on_attach = function(client, bufnr)
     lsp_zero.default_keymaps({buffer = bufnr})
   end,
 })
+
 require('lspconfig').jdtls.setup({
 	capabilities = lsp_capabilities,
 	on_attach = function(client, bufnr)
@@ -23,6 +27,11 @@ require('lspconfig').lua_ls.setup({
 	end,
 })
 
+require('lspconfig').html.setup({
+	capabilities = lsp_capabilities,
+})
+
+
 lsp_zero.preset({}).setup()
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -37,7 +46,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
     -- vim.cmd('GoFmt')
-	vim.cmd('!gofmt -e -s -w .')
+	-- vim.cmd('!gofmt -e -s -w .')
   end,
   group = format_sync_grp,
 })

@@ -8,7 +8,8 @@ if not snip_status_ok then
   return
 end
 
-require("luasnip/loaders/from_vscode").lazy_load()
+--require("luasnip/loaders/from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load()
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1
@@ -69,8 +70,8 @@ cmp.setup {
         cmp.select_next_item()
       elseif luasnip.expandable() then
         luasnip.expand()
-      --elseif luasnip.expand_or_jumpable() then
-        --luasnip.expand_or_jump()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
       elseif check_backspace() then
         fallback()
       else
@@ -109,8 +110,8 @@ cmp.setup {
     end,
   },
   sources = {
+    { name = "luasnip", option = { show_autosnippets = true } },
     { name = "nvim_lsp" },
-    { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
   },
